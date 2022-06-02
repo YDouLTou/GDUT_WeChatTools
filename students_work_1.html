@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="css/students_work.css"/>
+		<script type="text/javascript">
+			
+			document.addEventListener('plusready', function(){
+				//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。")
+				
+			});
+			
+		</script>
+		
+	</head>
+	<body>
+		<script>
+			document.addEventListener('plusready', () => {
+				//等待plus ready后再调用5+ API：
+				let first = null;
+				const webview = plus.webview.currentWebview();
+				plus.key.addEventListener('backbutton', () => {
+					webview.canBack((e) => {
+						if (e.canBack) {
+							webview.back();
+						} 
+						else {
+							//首次按键，提示‘再按一次退出应用’
+							if (!first) {
+								//获取第一次点击的时间戳
+								first = new Date().getTime();
+								//通过H5+ API 调用Android 上的toast 提示框
+								plus.nativeUI.toast("再按一次退出应用", {
+									duration: 'short'
+								});
+								setTimeout(() => {
+									first = null;
+								}, 1000);
+							} 
+							else {
+								if (new Date().getTime() - first < 1000) {
+									//获取第二次点击的时间戳, 两次之差 小于 1000ms 说明1s点击了两次,
+									plus.runtime.quit(); //退出应用
+									// webview.close(); //hide,quit
+								}
+							}
+						}
+					})
+				});
+			});
+			if (localStorage.name != null) {
+				var text = "您好，" + localStorage.name + "，您有一条来自学生工作管理系统的消息提醒：";
+			};
+		</script>
+		<div class="div_top">
+			<div class="div_top_left" style="font-size:30px;text-align: center; line-height: 50px;">
+				<a href="javascript:history.go(-1)" style="text-decoration:none; color: black;" >
+					<
+				</a>
+			</div>
+			<div class="div_top_middle" style="font-size:16px;text-align: center; line-height: 55px;">
+				学生工作管理
+			</div>
+			<div class="div_top_right" style="font-size:35px;text-align: center; line-height: 50px;">
+				+
+			</div>
+		</div>
+		<div class="div_center">
+			<div class="mobile-page">
+				<!--<div style="color: gray; text-align: center; font-size: 12px; height: 26px;">2021年10月21日 下午13:20</div>
+				<div class="admin-group">
+					<img class="admin-img" src="img/head.png" />
+					<div class="admin-msg">
+						<i class="triangle-admin"></i>
+						<span class="admin-reply">欢迎来抢楼！欢迎来抢楼！欢迎来抢楼！欢迎来抢楼！欢迎来抢楼！欢迎来抢楼！欢迎来抢楼！</span>
+					</div>
+				</div>-->
+				<div style="color: gray; text-align: center; font-size: 12px; height: 26px;">2021年12月31日 晚上19:24</div>
+				<div class="admin-group">
+					<img class="admin-img" src="img/head.png" />
+					<div class="admin-msg">
+						<i class="triangle-admin"></i>
+						<span class="admin-reply">
+							<p id="text_3"></p>
+							<p>【通知内容】</p>
+							<br />
+							<p>2021年12月31日 19:24:54</p>
+							<p style="color: cornflowerblue;">点击查看更多详情</p>
+							<script>
+								document.getElementById("text_3").innerHTML = text;
+							</script>
+						</span>
+					</div>
+				</div>
+				<div style="color: gray; text-align: center; font-size: 12px; height: 26px;">2021年05月11日 下午16:43</div>
+				<div class="admin-group">
+					<img class="admin-img" src="img/head.png" />
+					<div class="admin-msg">
+						<i class="triangle-admin"></i>
+						<span class="admin-reply">
+							<p id="text_2"></p>
+							<p>【通知内容】</p>
+							<br />
+							<p>2021年05月11日 16:43:34</p>
+							<p style="color: cornflowerblue;">点击查看更多详情</p>
+							<script>
+								document.getElementById("text_2").innerHTML = text;
+							</script>
+						</span>
+					</div>
+				</div>
+				<div id="shenqing" style="color: gray; text-align: center; font-size: 12px; height: 26px;"></div>
+				<script>
+					if (localStorage.shenqing != null) {
+						var shenqing_1 = localStorage.shenqing.substr(11, )
+						document.getElementById("shenqing").innerHTML = shenqing_1;
+					};
+				</script>
+				<div class="admin-group">
+					<img class="admin-img" src="img/head.png" />
+					<div class="admin-msg">
+						<i class="triangle-admin"></i>
+						<span class="admin-reply">
+							<p id="text_1"></p>
+							<p>【通知内容】</p>
+							<br />
+							<p id="time"></p>
+							<p style="color: cornflowerblue;">点击查看更多详情</p>
+							<script>
+								document.getElementById("text_1").innerHTML = text;
+								if (localStorage.shenqing != null) {
+									var shenqing_2 = localStorage.shenqing.substr(0, 4) + "年" + localStorage.shenqing.substr(5, 2) + "月" +
+										localStorage.shenqing.substr(8, 2) + "日 " + localStorage.shenqing.substr(11, ) + ":03"
+									document.getElementById("time").innerHTML = shenqing_2;
+								};
+							</script>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<img src="img/students_work_all.png" class="img_style"/>
+		<!-- <div class="div_bottom_left"> -->
+			<!-- <img src="img/students_work_1.jpg" height="100%" /> -->
+		<!-- </div> -->
+		<div class="div_click_full">
+			<a href="javascript:history.go(-1)">
+				<input type="button" class="button_full"/>
+			</a>
+		</div>
+		<div class="div_click_left_1">
+			<!-- <a href="wait.html" > -->
+				<input type="button" class="button_left" onclick="location.href=('students_out.html')"/>
+			<!-- </a> -->
+		</div>
+	</body>
+</html>

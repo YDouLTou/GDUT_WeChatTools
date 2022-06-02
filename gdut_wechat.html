@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="css/gdut_wechat.css"/>
+		<script type="text/javascript">
+			
+			document.addEventListener('plusready', function(){
+				//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。")
+			});
+
+		</script>
+		
+	</head>
+	<body>
+		<script>
+			document.addEventListener('plusready', () => {
+				//等待plus ready后再调用5+ API：
+				let first = null;
+				const webview = plus.webview.currentWebview();
+				plus.key.addEventListener('backbutton', () => {
+					webview.canBack((e) => {
+						if (e.canBack) {
+							if (!first) {
+								//获取第一次点击的时间戳
+								first = new Date().getTime();
+								//通过H5+ API 调用Android 上的toast 提示框
+								setTimeout(() => {
+									first = null;
+								}, 1000);
+							} 
+							else {
+								if (new Date().getTime() - first < 1000) {
+									//获取第二次点击的时间戳, 两次之差 小于 1000ms 说明1s点击了两次,
+									webview.back(); //双击返回上一页
+									// webview.close(); //hide,quit
+								}
+							}
+							
+						} 
+						else {
+							//首次按键，提示‘再按一次退出应用’
+							if (!first) {
+								//获取第一次点击的时间戳
+								first = new Date().getTime();
+								//通过H5+ API 调用Android 上的toast 提示框
+								plus.nativeUI.toast("再按一次退出应用", {
+									duration: 'short'
+								});
+								setTimeout(() => {
+									first = null;
+								}, 1000);
+							} 
+							else {
+								if (new Date().getTime() - first < 1000) {
+									//获取第二次点击的时间戳, 两次之差 小于 1000ms 说明1s点击了两次,
+									plus.runtime.quit(); //退出应用
+									// webview.close(); //hide,quit
+								}
+							}
+						}
+					})
+				});
+			});
+		</script><!--响应手机返回键并做出正确行动-->
+		<div class="div_top">
+			<div class="div_top_left" style="font-size:30px;text-align: center; line-height: 50px;"><!--左侧操作-->
+				<a style="text-decoration:none; color: black;">
+					<
+				</a>
+			</div>
+			<div class="div_top_middle" style="font-size:16px;text-align: center; line-height: 55px;"><!--中间信息-->
+				广东工业大学
+			</div>
+			<div class="div_top_right" style="font-size:35px;text-align: center; line-height: 50px;"><!--右侧操作-->
+				+
+			</div>
+		</div>
+		<div class="div_center"><!--中部内容-->
+			<div>
+				<img src="img/gdut_wechat.jpg" class="img_style"/>
+			</div>
+			<div class="div_click"><!--跳转按钮-->
+				<a href="students_work.html">
+					<input type="button" class="button_alpha"/>
+				</a>
+			</div>
+		</div>
+		<div class="div_right_text" style="font-size: 12px ;text-align: center;"><!--右侧文本-->
+			A<br/>
+			B<br/>
+			C<br/>
+			D<br/>
+			E<br/>
+			F<br/>
+			G<br/>
+			H<br/>
+			I<br/>
+			J<br/>
+			K<br/>
+			L<br/>
+			M<br/>
+			N<br/>
+			O<br/>
+			P<br/>
+			Q<br/>
+			R<br/>
+			S<br/>
+			T<br/>
+			U<br/>
+			V<br/>
+			W<br/>
+			X<br/>
+			Y<br/>
+			Z<br/>
+			#<br/>
+		</div>
+
+	
+		
+	</body>
+</html>

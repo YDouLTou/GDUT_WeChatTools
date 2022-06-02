@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" src="js/jquery-1.7.2.js">
+			document.addEventListener('plusready', function() {
+				//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。")
+			});
+		</script>
+	</head>
+	<body>
+		<div class="div_top">
+			<!--顶部操作栏-->
+			<div class="div_top_left" style="font-size:30px;text-align: center; line-height: 50px;">
+				<!--左侧操作-->
+
+			</div>
+			<div class="div_top_middle" style="font-size:16px;text-align: center; line-height: 55px;">
+				<!--中间信息-->
+				首页
+			</div>
+			<div class="div_top_right" style="font-size:35px;text-align: center; line-height: 50px;">
+				<!--右侧操作-->
+				···
+			</div>
+		</div>
+		<div class="div_jpg">
+			<!--logo图片-->
+			<img src="img/iso.png" height="150px" width="150px" />
+		</div>
+		<div class="div_header">
+			<!--标题-->
+			<h1 style="text-align: center;">
+				欢迎使用
+			</h1>
+			<h2 style="text-align: center;">
+				广工企业微信离线平台
+			</h2>
+		</div>
+		<div class="div_text_left">
+			<!--请填写你的信息-->
+			请填写你的信息：
+		</div>
+		<table class="table_style" border="0">
+			<!--信息表格-->
+			<tr id="header">
+				<th class="table_style_left"></th>
+				<th class="table_style_right"></th>
+			</tr>
+			<tr id="1">
+				<td style="text-align: right;">
+					姓名：
+				</td>
+				<td>
+					<input id="name" type="text" class="input_style" placeholder=" 某某某" autofocus />
+				</td>
+			</tr>
+			<tr id="2">
+				<td style="text-align: right;">
+					学号：
+				</td>
+				<td>
+					<input id="xuehao" type="text" class="input_style" placeholder=" ########" />
+				</td>
+			</tr>
+			<tr id="3">
+				<td style="text-align: right;">
+					学院：
+				</td>
+				<td>
+					<form>
+						<select id="xueyuan" type="text" class="input_style">
+							<option value="管理学院">管理学院</option>
+						</select>
+					</form>
+					<!-- <input id="xueyuan" type="text" class="input_style" placeholder=" ####学院" /> -->
+				</td>
+			</tr>
+			<tr id="4">
+				<td style="text-align: right;">
+					专业：
+				</td>
+				<td>
+					<form>
+						<select id="zhuanye" type="text" class="input_style">
+							<option value="工商管理类">工商管理类</option>
+						</select>
+					</form>
+					<!-- <input id="zhuanye" type="text" class="input_style" placeholder=" ########" /> -->
+				</td>
+			</tr>
+			<tr id="5">
+				<td style="text-align: right;">
+					班级：
+				</td>
+				<td>
+					<form>
+						<select id="banji" type="text" class="input_style">
+							<option value="工商管理类21(20)">工商管理类21(20)</option>
+						</select>
+					</form>
+					<!-- <input id="banji" type="text" class="input_style" placeholder=" #专业#*年级*(*班级*)" /> -->
+				</td>
+			</tr>
+			<tr id="6">
+				<td style="text-align: right;">
+					离校时间：
+				</td>
+				<td>
+					<input id="lixiao" type="datetime-local" class="input_style" />
+					<!-- <input id="lixiao" type="text" class="input_style" placeholder=" ****-**-**  **:**" /> -->
+				</td>
+			</tr>
+			<tr id="7">
+				<td style="text-align: right;">
+					回校时间：
+				</td>
+				<td>
+					<input id="huixiao" type="datetime-local" class="input_style" />
+					<!-- <input id="huixiao" type="text" class="input_style" placeholder=" ****-**-**  **:**" /> -->
+				</td>
+			</tr>
+			<tr id="8">
+				<td style="text-align: right;">
+					申请时间：
+				</td>
+				<td>
+					<input id="shenqing" type="datetime-local" class="input_style" />
+					<!-- <input id="shenqing" type="text" class="input_style" placeholder=" ****-**-**  **:**" /> -->
+				</td>
+			</tr>
+		</table><br />
+		<a href="warning.html" style="float: right; margin-right: 50px;">
+			<!--跳转+保存按钮-->
+			<input type="button" onclick="save()" id="export" value="  确 认 ~ o(*￣▽￣*)ブ  " />
+			<script>
+				function save() {
+					var name = document.getElementById("name").value;
+					var xuehao = document.getElementById("xuehao").value;
+					var xueyuan = document.getElementById("xueyuan").value;
+					var zhuanye = document.getElementById("zhuanye").value;
+					var banji = document.getElementById("banji").value;
+					var lixiao = document.getElementById("lixiao").value;
+					var huixiao = document.getElementById("huixiao").value;
+					var shenqing = document.getElementById("shenqing").value;
+					localStorage.setItem("name", name);
+					localStorage.setItem("xuehao", xuehao);
+					localStorage.setItem("xueyuan", xueyuan);
+					localStorage.setItem("zhuanye", zhuanye);
+					localStorage.setItem("banji", banji);
+					localStorage.setItem("lixiao", lixiao);
+					localStorage.setItem("huixiao", huixiao);
+					localStorage.setItem("shenqing", shenqing);
+				};
+			</script>
+			<!--保存数据为cookie-->
+			<script>
+				window.onload = function() {
+					if (localStorage.name != null) {
+						document.getElementById('name').value = localStorage.name;
+					};
+					if (localStorage.xuehao != null) {
+						document.getElementById('xuehao').value = localStorage.xuehao;
+					};
+					if (localStorage.xueyuan != null) {
+						document.getElementById('xueyuan').value = localStorage.xueyuan;
+					};
+					if (localStorage.zhuanye != null) {
+						document.getElementById('zhuanye').value = localStorage.zhuanye;
+					};
+					if (localStorage.banji != null) {
+						document.getElementById('banji').value = localStorage.banji;
+					};
+					if (localStorage.lixiao != null) {
+						document.getElementById('lixiao').value = localStorage.lixiao;
+					};
+					if (localStorage.huixiao != null) {
+						document.getElementById('huixiao').value = localStorage.huixiao;
+					};
+					if (localStorage.shenqing != null) {
+						document.getElementById('shenqing').value = localStorage.shenqing;
+					};
+				};
+			</script>
+			<!--读取已有的cookie-->
+		</a><br /><br />
+		<div class="div_bottom">
+		</div>
+		<div class="div_bottom_text">
+			<!--底部文本-->
+			*点击后没反应的地方，就代表我没有做完。<br />
+			*按格式输入信息，以正常"找码"操作即可。<br />
+			*默认前往地区：广东省广州市天河区。
+		</div>
+		<script>
+			document.addEventListener('plusready', () => {
+				//等待plus ready后再调用5+ API：
+				let first = null;
+				const webview = plus.webview.currentWebview();
+				plus.key.addEventListener('backbutton', () => {
+					webview.canBack((e) => {
+						if (e.canBack) {
+							webview.back();
+						} else {
+							//首次按键，提示‘再按一次退出应用’
+							if (!first) {
+								//获取第一次点击的时间戳
+								first = new Date().getTime();
+								//通过H5+ API 调用Android 上的toast 提示框
+								plus.nativeUI.toast("再按一次退出应用", {
+									duration: 'short'
+								});
+								setTimeout(() => {
+									first = null;
+								}, 1000);
+							} else {
+								if (new Date().getTime() - first < 1000) {
+									//获取第二次点击的时间戳, 两次之差 小于 1000ms 说明1s点击了两次,
+									plus.runtime.quit(); //退出应用
+									// webview.close(); //hide,quit
+								}
+							}
+						}
+					})
+				});
+			});
+		</script>
+		<!--响应手机返回键并做出正确行动-->
+	</body>
+</html>

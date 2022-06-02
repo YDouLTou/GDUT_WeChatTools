@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="css/qrcode.css" />
+		<script type="text/javascript">
+			document.addEventListener('plusready', function() {
+				//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。")
+
+			});
+		</script>
+	</head>
+	<body>
+		<script>
+			document.addEventListener('plusready', () => {
+				//等待plus ready后再调用5+ API：
+				let first = null;
+				const webview = plus.webview.currentWebview();
+				plus.key.addEventListener('backbutton', () => {
+					webview.canBack((e) => {
+						if (e.canBack) {
+							webview.back();
+						} 
+						else {
+							//首次按键，提示‘再按一次退出应用’
+							if (!first) {
+								//获取第一次点击的时间戳
+								first = new Date().getTime();
+								//通过H5+ API 调用Android 上的toast 提示框
+								plus.nativeUI.toast("再按一次退出应用", {
+									duration: 'short'
+								});
+								setTimeout(() => {
+									first = null;
+								}, 1000);
+							} 
+							else {
+								if (new Date().getTime() - first < 1000) {
+									//获取第二次点击的时间戳, 两次之差 小于 1000ms 说明1s点击了两次,
+									plus.runtime.quit(); //退出应用
+									// webview.close(); //hide,quit
+								}
+							}
+						}
+					})
+				});
+			});
+		</script><!--响应手机返回键并做出正确行动-->
+		<div class="div_top">
+			<div class="div_top_left" style="font-size:35px;text-align: center;">
+				<a href="javascript:history.go(-1)" style="text-decoration:none; color: black;">
+					×
+				</a>
+			</div>
+			<div class="div_top_middle" style="font-size:16px;text-align: center;line-height: 50px;">
+				外出登记二维码
+			</div>
+			<div class="div_top_right" style="font-size:35px;text-align: center">
+				···
+			</div>
+		</div>
+		<div class="div_time">
+			<div id="dateTime" style="font-size:16px;text-align: center;line-height: 55px;">
+				<script>
+					Date.prototype.format = function(fmt) {
+						var o = {
+							"y+": this.getFullYear(), //年
+							"M+": this.getMonth() + 1, //月份
+							"d+": this.getDate(), //日
+							"h+": this.getHours(), //小时
+							"m+": this.getMinutes(), //分
+							"s+": this.getSeconds() //秒
+						};
+						if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+						for (var k in o)
+							if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[
+									k]) :
+								(("00" + o[k]).substr(("" + o[k]).length)));
+						return fmt;
+					}
+					setInterval("document.getElementById('dateTime').innerHTML = (new Date()).format('yyyy-MM-dd hh:mm:ss');", 500);
+				</script>
+			</div>
+		</div>
+		<div class="div_jpg" id="qr">
+			<img src="img/erweima.jpg" width="140px" height="140px" style="filter:grayscale(100%)" />
+			<script type="text/javascript">
+				var html = "<img src='img/erweima.jpg' width='140px' height='140px'/>";
+				setTimeout("document.getElementById('qr').innerHTML=html", 500); //延时0.8秒
+			</script>
+		</div>
+		<div class="div_left_text">
+			外出时间
+		</div>
+		<div id="plan_time">
+			<div class="div_plan_time">
+				<div class="div_plan_time_left">
+					离校时间
+				</div>
+				<div class="div_plan_time_right" id="lixiao">
+					<script>
+						if (localStorage.lixiao != null) {
+							var lixiao = localStorage.lixiao.substr(0, 10) + " " + localStorage.lixiao.substr(11, )
+							// document.getElementById("lixiao").innerHTML = lixiao;
+							setTimeout("document.getElementById('lixiao').innerHTML = lixiao;", 500)
+						};
+					</script>
+				</div>
+			</div>
+			<div class="hr_style"></div>
+			<div class="div_plan_time">
+				<div class="div_plan_time_left">
+					回校时间
+				</div>
+				<div class="div_plan_time_right" id="huixiao">
+					<script>
+						if (localStorage.huixiao != null) {
+							var huixiao = localStorage.huixiao.substr(0, 10) + " " + localStorage.huixiao.substr(11, )
+							setTimeout("document.getElementById('huixiao').innerHTML = huixiao;", 500)
+						};
+					</script>
+				</div>
+			</div>
+		</div>
+		<br />
+		<div class="div_left_text">
+			学生信息
+		</div>
+		<div id="student_items">
+			<div class="div_student_items">
+				<div class="div_student_items_left">
+					姓名
+				</div>
+				<div class="div_student_items_right" id="name">
+					<script>
+						if (localStorage.name != null) {
+							// document.getElementById("name").innerHTML = localStorage.name;
+							setTimeout("document.getElementById('name').innerHTML = localStorage.name;", 500)
+						};
+					</script>
+				</div>
+			</div>
+			<div class="hr_style"></div>
+			<div class="div_student_items">
+				<div class="div_student_items_left">
+					学号
+				</div>
+				<div class="div_student_items_right" id="xuehao">
+					<script>
+						if (localStorage.xuehao != null) {
+							// document.getElementById("xuehao").innerHTML = localStorage.xuehao;
+							setTimeout("document.getElementById('xuehao').innerHTML = localStorage.xuehao;", 500)
+						};
+					</script>
+				</div>
+			</div>
+			<div class="hr_style"></div>
+			<div class="div_student_items">
+				<div class="div_student_items_left">
+					学院
+				</div>
+				<div class="div_student_items_right" id="xueyuan">
+					<script>
+						if (localStorage.xueyuan != null) {
+							// document.getElementById("xueyuan").innerHTML = localStorage.xueyuan;
+							setTimeout("document.getElementById('xueyuan').innerHTML = localStorage.xueyuan;", 500)
+						};
+					</script>
+				</div>
+			</div>
+			<div class="hr_style"></div>
+			<div class="div_student_items">
+				<div class="div_student_items_left">
+					专业
+				</div>
+				<div class="div_student_items_right" id="zhuanye">
+					<script>
+						if (localStorage.zhuanye != null) {
+							// document.getElementById("zhuanye").innerHTML = localStorage.zhuanye;
+							setTimeout("document.getElementById('zhuanye').innerHTML = localStorage.zhuanye;", 500)
+						};
+					</script>
+				</div>
+			</div>
+			<div class="hr_style"></div>
+			<div class="div_student_items">
+				<div class="div_student_items_left">
+					班级
+				</div>
+				<div class="div_student_items_right" id="banji">
+					<script>
+						if (localStorage.banji != null) {
+							// document.getElementById("banji").innerHTML = localStorage.banji;
+							setTimeout("document.getElementById('banji').innerHTML = localStorage.banji;", 500)
+						};
+					</script>
+				</div>
+			</div>
+			<div class="hr_style"></div>
+		</div>
+	</body>
+</html>

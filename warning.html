@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+		 window.onclick = function(){
+		     window.location = 'gdut_wechat.html';
+		}
+		</script>
+		<h1 id="h1" style="font-size: 150px; text-align: center; color: red; margin-top: 20%;" >
+			Warning!
+		</h1>
+		<h2 id="h2_1" style="font-size: 36px;text-align: center;">
+			该软件，仅开发者指定的人群才可使用。<br/>
+			未经允许，不可将此软件再次分享转载。<br/>
+			否则将严肃处理，请各位同学谨慎使用。<br /><br/>
+			该软件索取的存储权限<br/>
+			仅用于保存与读取你所填写的数据信息。<br/>
+			请放心使用<br/><br/>
+			点击此页面任意地方即可跳转到下一页。<br/>
+			在此页面触发手机返回操作即可返回首页。<br />
+			并在下一页中需要触发手机返回操作两次才可回到此页。<br/>
+			（下一页面中的左上角返回并不起作用）<br/>
+			（以免露馅）<br/><br/>
+		</h2>
+		<div style="text-align: center; text-decoration:line-through ; font-size: 28px;">
+			注意：<br/>
+			若在使用中,<br/>
+			感受到左上方返回导航键与手机返回操作<br/>
+			之间共同交互有些许变扭或不符合逻辑。<br />
+			以至于你返回不到你想要的界面时。<br/>
+			请直接关闭软件再次启动。<br/>
+			（程序写的太乱了，逻辑有误，懒得改了）<br/>
+			（ ！摆 ！）
+		</div>
+		<div style="text-align: center ; font-size: 24px;">
+			👆已改o(*￣▽￣*)ブ放心使用~
+		</div>
+		
+		<script>
+			document.addEventListener('plusready', () => {
+				//等待plus ready后再调用5+ API：
+				let first = null;
+				const webview = plus.webview.currentWebview();
+				plus.key.addEventListener('backbutton', () => {
+					webview.canBack((e) => {
+						if (e.canBack) {
+							webview.back();
+						} 
+						else {
+							//首次按键，提示‘再按一次退出应用’
+							if (!first) {
+								//获取第一次点击的时间戳
+								first = new Date().getTime();
+								//通过H5+ API 调用Android 上的toast 提示框
+								plus.nativeUI.toast("再按一次退出应用", {
+									duration: 'short'
+								});
+								setTimeout(() => {
+									first = null;
+								}, 1000);
+							} 
+							else {
+								if (new Date().getTime() - first < 1000) {
+									//获取第二次点击的时间戳, 两次之差 小于 1000ms 说明1s点击了两次,
+									plus.runtime.quit(); //退出应用
+									// webview.close(); //hide,quit
+								}
+							}
+						}
+					})
+				});
+			});
+		</script><!--响应手机返回键并做出正确行动-->
+	</body>
+</html>
