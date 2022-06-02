@@ -1,0 +1,335 @@
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	background-color: whitesmoke;
+	background-size: contain|cover;
+	width: 100%;
+	height: auto
+}
+
+
+.div_top {
+	height: 50px;
+	width: 100%;
+	margin: 0px, 0px, 0px, 0px;
+	position: fixed;
+	left: 0;
+	top: 0;
+	display: flex;
+	z-index: 10;
+	background-color: whitesmoke;
+}
+
+.div_top_left {
+	height: 50px;
+	width: 50px;
+	text-align: center;
+}
+
+.div_top_middle {
+	flex: 1;
+	text-align: center;
+}
+
+.div_top_right {
+	height: 50px;
+	width: 50px;
+	text-align: center;
+}
+
+
+.div_center {
+	position: absolute;
+	top: 55px;
+	left: 0;
+	bottom: 50px;
+	z-index: 5;
+}
+
+/* 
+.div_bottom{
+	position: absolute;
+	left: 0 ;
+	bottom: 0 ;
+	background-color: ;
+	z-index: 10;
+	background-color: antiquewhite;
+} */
+/* 
+.div_bottom_left{
+	height: 30%;
+	width: 43.1%;
+	background-color: darkcyan;
+	position: fixed;
+	left: 6%;
+	bottom: 5%;
+} */
+.img_style {
+	background-size: contain|cover;
+	width: 100%;
+	height: auto;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	z-index: 10;
+}
+
+
+.div_click_full {
+	position: fixed;
+	left: 0;
+	bottom: 6%;
+	height: 100%;
+	width: 100%;
+	z-index: 15;
+	/* background-color: aqua; */
+}
+
+.div_click_left {
+	position: fixed;
+	left: 0px;
+	bottom: 0%;
+	height: 6%;
+	width: 31%;
+	margin-left: 10%;
+	z-index: 20;
+	/* background-color: aqua; */
+}
+
+.div_click_left_1 {
+/* 	position: fixed;
+	left: 6%;
+	bottom: 33vw;
+	height: 16vw;
+	width: 41%;
+	z-index: 20;
+	background-color: bisque; */
+	position: fixed;
+	left: 6%;
+	bottom: 11vw;
+	height: 61vw;
+	width: 41%;
+	z-index: 20;
+	/* background-color: bisque; */
+}
+
+
+
+.button_full {
+	background-color: Transparent;
+	/* background-color: aqua; */
+	background-repeat: no-repeat;
+	border: none;
+	cursor: pointer;
+	overflow: hidden;
+	height: 1000px;
+	width: 100%;
+	z-index: 15;
+}
+.button_left{
+	background-color: Transparent;
+	/* background-color: aqua; */
+	background-repeat: no-repeat;
+	border: none;
+	cursor: pointer;
+	overflow: hidden;
+	outline: none;
+	position: relative;
+	top: 40%;
+	height: 20%;
+	width: 100%;
+	z-index: 25;
+}
+.button_alpha {
+	background-color: Transparent;
+	/* background-color: aqua; */
+	background-repeat: no-repeat;
+	border: none;
+	cursor: pointer;
+	overflow: hidden;
+	outline: none;
+	height: 100%;
+	width: 100%;
+	z-index: 15;
+}
+
+
+
+/*公共样式*/
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+li,
+form,
+button,
+input,
+textarea,
+th,
+td {
+	margin: 0;
+	padding: 0
+}
+
+body,
+button,
+input,
+select,
+textarea {
+	font: 12px/1.5 Microsoft YaHei UI Light, tahoma, arial, "\5b8b\4f53";
+	*line-height: 1.5;
+	-ms-overflow-style: scrollbar
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-size: 100%
+}
+
+ul,
+ol {
+	list-style: none
+}
+
+a {
+	text-decoration: none
+}
+
+a:hover {
+	text-decoration: underline
+}
+
+img {
+	border: 0
+}
+
+button,
+input,
+select,
+textarea {
+	font-size: 100%
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0
+}
+
+/*rem*/
+html {
+	font-size: 62.5%;
+}
+
+body {
+	font: 16px/1.5 "microsoft yahei", 'tahoma';
+}
+
+body .mobile-page {
+	font-size: 1.6rem;
+}
+
+/*浮动*/
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+.clearfix:after {
+	content: '';
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+body {
+	background-color: #F5F5F5;
+}
+
+.mobile-page {
+	max-width: 600px;
+}
+
+.mobile-page .admin-img,
+.mobile-page .user-img {
+	width: 45px;
+	height: 45px;
+}
+
+i.triangle-admin,
+i.triangle-user {
+	width: 0;
+	height: 0;
+	position: absolute;
+	top: 10px;
+	display: inline-block;
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent;
+}
+
+.mobile-page i.triangle-admin {
+	left: 4px;
+	border-right: 12px solid #fff;
+}
+
+.mobile-page i.triangle-user {
+	right: 4px;
+	border-left: 12px solid #9EEA6A;
+}
+
+.mobile-page .admin-group,
+.mobile-page .user-group {
+	padding: 6px;
+	display: flex;
+	display: -webkit-flex;
+}
+
+.mobile-page .admin-group {
+	justify-content: flex-start;
+	-webkit-justify-content: flex-start;
+}
+
+.mobile-page .user-group {
+	justify-content: flex-end;
+	-webkit-justify-content: flex-end;
+}
+
+.mobile-page .admin-reply,
+.mobile-page .user-reply {
+	display: inline-block;
+	padding: 8px;
+	border-radius: 4px;
+	background-color: #fff;
+	margin: 0 15px 12px;
+}
+
+.mobile-page .admin-reply {
+	box-shadow: 0px 0px 2px #ddd;
+}
+
+.mobile-page .user-reply {
+	text-align: left;
+	background-color: #9EEA6A;
+	box-shadow: 0px 0px 2px #bbb;
+}
+
+.mobile-page .user-msg,
+.mobile-page .admin-msg {
+	width: 75%;
+	position: relative;
+}
+
+.mobile-page .user-msg {
+	text-align: right;
+}
